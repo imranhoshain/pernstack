@@ -41,13 +41,13 @@ services:
       - .env
       - ./backend/.env
     environment:
-      PORT: ${BACKEND_PORT}
+      PORT: ${PORT}
       CLIENT_URL: ${CLIENT_URL}
     command: npm run start:server
     volumes:
       - ./backend/uploads:/app/backend/uploads
     expose:
-      - "${BACKEND_PORT}"
+      - "${PORT}"
     networks:
       - web
       - backend
@@ -69,7 +69,7 @@ services:
       - "traefik.http.routers.${ENVIRONMENT}-backend-api-secure.priority=100"
       - "traefik.http.routers.${ENVIRONMENT}-backend-api-secure.service=${ENVIRONMENT}-backend-svc"
       # Service definition for backend
-      - "traefik.http.services.${ENVIRONMENT}-backend-svc.loadbalancer.server.port=${BACKEND_PORT}"
+      - "traefik.http.services.${ENVIRONMENT}-backend-svc.loadbalancer.server.port=${PORT}"
 
 networks:
   web:

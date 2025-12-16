@@ -85,8 +85,9 @@ jobs:
       # docker-compose requires .env files to exist
       - name: Create empty env files for CI
         run: |
-          touch frontend/.env
-          touch backend/.env
+          touch frontend/.env.example
+          touch backend/.env.example
+          touch .env.example
 
       - name: Validate Compose File
         run: docker compose -f docker-compose.yml config
